@@ -19,3 +19,4 @@ action "gitleaks" {
 ----
 
 [MIT License](LICENSE)
+bump
