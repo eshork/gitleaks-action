@@ -5,5 +5,4 @@ set -u # nounset - Attempt to use undefined variable outputs error message, and 
 # set -x # verbose (expands commands)
 
 gitleaks --verbose --redact --threads=1 \
-  --branch="$GITHUB_REF" \
   --repo-path="$GITHUB_WORKSPACE"
