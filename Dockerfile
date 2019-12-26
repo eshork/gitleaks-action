@@ -1,4 +1,4 @@
-FROM zricethezav/gitleaks
+FROM zricethezav/gitleaks:v3.0.3
 
 LABEL "com.github.actions.name"="gitleaks-action"
 LABEL "com.github.actions.description"="checks your source for embedded key leaks, using gitleaks"
