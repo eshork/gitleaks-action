@@ -10,4 +10,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
-      - uses: ${{ github.repository }}@master
+      - uses: $GITHUB_REPOSITORY@master
