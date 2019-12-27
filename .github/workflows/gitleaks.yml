@@ -10,4 +10,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
-      - uses: eshork/gitleaks-action@master
+      - uses: ${{ github.repository }}@master
