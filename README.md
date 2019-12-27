@@ -6,7 +6,7 @@ Credit to [zricethezav/gitleaks](https://github.com/zricethezav/gitleaks) for th
 
 ## Usage
 
-```
+```yaml
 name: gitleaks my commits
 
 on:
@@ -17,11 +17,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - uses: eshork/gitleaks-action@master
-
 ```
+
+> Note: Avoid using master ref, prefer to pin the last release's SHA ref.
 
 ----
 
