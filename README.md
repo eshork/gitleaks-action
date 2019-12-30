@@ -20,6 +20,13 @@ jobs:
         uses: actions/checkout@v2
 
       - uses: eshork/gitleaks-action@master
+        env:
+          # GITLEAKS_REPO targets the repo to scan (default to GITHUB_WORKSPACE)
+          GITLEAKS_REPO: $GITHUB_WORKSPACE
+          # GITLEAKS_CONFIG targets the config to use (use `--repo-config` if not set)
+          GITLEAKS_CONFIG: $GITHUB_WORKSPACE/.github/gitleaks.toml
+          # GITLEAKS_EXTRA_ARGS allow to extra args to gitleaks
+          GITHUB_EXTRA_ARGS: --log=debug
 ```
 
 > Note: Avoid using master ref, prefer to pin the last release's SHA ref.
