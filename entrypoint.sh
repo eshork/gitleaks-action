@@ -10,8 +10,6 @@ GITLEAKS_EXTRA_ARGS=${GITLEAKS_EXTRA_ARGS:-}
 
 if [ -n "$GITLEAKS_CONFIG" ]; then
   GITLEAKS_EXTRA_ARGS="$GITLEAKS_EXTRA_ARGS --config=$GITLEAKS_CONFIG"
-else
-  GITLEAKS_EXTRA_ARGS="$GITLEAKS_EXTRA_ARGS --repo-config"
 fi
 
 gitleaks --verbose --redact --threads=1 \
