@@ -20,7 +20,7 @@ then
 else
     # pushed tag or single commit reference
     gitleaks -v --exclude-forks --redact --threads=1 \
-      --commit=$GITHUB_SHA \ 
+      --commit=$GITHUB_SHA \
       --repo-path=$GITHUB_WORKSPACE
 fi
 
