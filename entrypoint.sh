@@ -12,10 +12,16 @@ echo "GITHUB_BASE_REF:   ${GITHUB_BASE_REF}"
 
 if [[ "${GITHUB_EVENT_NAME}" == "pull_request" ]] 
 then
-    # branch name in the form "refs/heads/<ref>"
-    REF_NAME="$(echo $GITHUB_REF | cut -d '/' -f3)"
+    # branch name in the form "refs/heads/<ref-id>[/<ref-type>]"
+    GITHUB_REF_ID="$(echo $GITHUB_REF | cut -d '/' -f3)"
+    GITHUB_REF_PULL_TYPE="$(echo $GITHUB_REF | cut -d '/' -f4)"
+    if [[ "${GITHUB_REF_PULL_TYPE}" == "merge" ]]
+    then
+        # during merge, the head ref is the PR branch name
+        GITHUB_REF_ID=${GITHUB_HEAD_REF}
+    fi
     gitleaks -v --exclude-forks --redact --threads=1 \
-      --branch=$REF_NAME \
+      --branch=$GITHUB_REF_ID \
       --repo-path=$GITHUB_WORKSPACE
 else
     # pushed tag or single commit reference
