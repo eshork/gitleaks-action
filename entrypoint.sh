@@ -30,7 +30,7 @@ then
 else
     # pushed tag or single commit reference
     # run only from current to master instead of full history
-    GITHUB_REF_MASTER=$(git show master --pretty=format:"%H")
+    GITHUB_REF_MASTER=$(git show origin/master --pretty='format:"%H"')
     gitleaks -v --exclude-forks --redact --threads=1 \
       --branch=$GITHUB_REF_ID \
       --commit-to=$GITHUB_REF_MASTER \
