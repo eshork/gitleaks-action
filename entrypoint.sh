@@ -10,7 +10,8 @@ echo "GITHUB_REF:        ${GITHUB_REF}"
 echo "GITHUB_HEAD_REF:   ${GITHUB_HEAD_REF}"
 echo "GITHUB_BASE_REF:   ${GITHUB_BASE_REF}"
 
-cd "$GITHUB_WORKSPACE" && git fetch --quiet
+cd "$GITHUB_WORKSPACE"
+git fetch --quiet
 
 # branch/tag name in the form "refs/<ref-type>/<ref-id>[/<ref-subtype>]"
 # ref-type: heads|pull|tags
