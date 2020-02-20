@@ -10,6 +10,8 @@ echo "GITHUB_REF:        ${GITHUB_REF}"
 echo "GITHUB_HEAD_REF:   ${GITHUB_HEAD_REF}"
 echo "GITHUB_BASE_REF:   ${GITHUB_BASE_REF}"
 
+cd "$GITHUB_WORKSPACE" && git fetch --quiet
+
 if [[ "${GITHUB_EVENT_NAME}" == "pull_request" ]] 
 then
     # branch name in the form "refs/heads/<ref-id>[/<ref-type>]"
