@@ -12,10 +12,11 @@ echo "GITHUB_BASE_REF:   ${GITHUB_BASE_REF}"
 
 cd "$GITHUB_WORKSPACE" && git fetch --quiet
 
+# branch/tag name in the form "refs/<ref-type>/<ref-id>[/<ref-subtype>]"
+# ref-type: heads|pull|tags
+GITHUB_REF_ID="$(echo $GITHUB_REF | cut -d '/' -f3)"
 if [[ "${GITHUB_EVENT_NAME}" == "pull_request" ]] 
 then
-    # branch name in the form "refs/heads/<ref-id>[/<ref-type>]"
-    GITHUB_REF_ID="$(echo $GITHUB_REF | cut -d '/' -f3)"
     GITHUB_REF_PULL_TYPE="$(echo $GITHUB_REF | cut -d '/' -f4)"
     if [[ "${GITHUB_REF_PULL_TYPE}" == "merge" ]]
     then
@@ -27,8 +28,11 @@ then
       --repo-path=$GITHUB_WORKSPACE
 else
     # pushed tag or single commit reference
+    # run only from current to master instead of full history
+    GITHUB_REF_MASTER=$(git show master --pretty=format:"%H")
     gitleaks -v --exclude-forks --redact --threads=1 \
-      --commit=$GITHUB_SHA \
+      --branch=$GITHUB_REF_ID \
+      --commit-to=$GITHUB_REF_MASTER \
       --repo-path=$GITHUB_WORKSPACE
 fi
 
